@@ -1,8 +1,87 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { HERO_STATS } from "@/data";
 
 interface HeroSectionProps {
   onNav: (id: string) => void;
+}
+
+interface CountUpValueProps {
+  value: string;
+  className?: string;
+  style?: React.CSSProperties;
+  duration?: number;
+  delay?: number;
+}
+
+function CountUpValue({
+  value,
+  className,
+  style,
+  duration = 1200,
+  delay = 0,
+}: CountUpValueProps) {
+  const match = value.match(/-?\d+(?:\.\d+)?/);
+
+  if (!match || match.index === undefined) {
+    return (
+      <p className={className} style={style}>
+        {value}
+      </p>
+    );
+  }
+
+  const numericPart = match[0];
+  const target = Number.parseFloat(numericPart);
+  const prefix = value.slice(0, match.index);
+  const suffix = value.slice(match.index + numericPart.length);
+  const decimalPlaces = numericPart.includes(".")
+    ? numericPart.split(".")[1].length
+    : 0;
+
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    let frameId = 0;
+    let timeoutId = 0;
+    let startTime = 0;
+
+    const step = (timestamp: number) => {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(target * eased);
+
+      if (progress < 1) {
+        frameId = window.requestAnimationFrame(step);
+      }
+    };
+
+    timeoutId = window.setTimeout(() => {
+      frameId = window.requestAnimationFrame(step);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.cancelAnimationFrame(frameId);
+    };
+  }, [delay, duration, target]);
+
+  const formatted =
+    decimalPlaces > 0
+      ? display.toFixed(decimalPlaces)
+      : Math.round(display).toString();
+
+  return (
+    <p className={className} style={style}>
+      {prefix}
+      {formatted}
+      {suffix}
+    </p>
+  );
 }
 
 export function HeroSection({ onNav }: HeroSectionProps) {
@@ -158,19 +237,19 @@ export function HeroSection({ onNav }: HeroSectionProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
         >
-          {HERO_STATS.map(([v, l]) => (
+          {HERO_STATS.map(([v, l], i) => (
             <div key={l}>
-              <p
-                className="cond text-white leading-none font-black"
+              <CountUpValue
+                value={v}
+                className="cond text-white w-fit mx-auto leading-none font-black"
                 style={{ fontSize: "40px" }}
-              >
-                {v}
-              </p>
+                delay={1100 + i * 120}
+              />
               <p
-                className="uppercase mt-[5px]"
+                className="uppercase mt-[7px]"
                 style={{
                   fontSize: "var(--font-size-3xs)",
-                  color: "var(--color-ink-dim)",
+                  color: "var(--color-ink-faint)",
                   letterSpacing: "var(--letter-spacing-wide5)",
                 }}
               >

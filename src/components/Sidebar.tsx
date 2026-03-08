@@ -27,9 +27,9 @@ export function Sidebar({ active, onNav }: SidebarProps) {
         transition={{ duration: 0.7 }}
         className="mb-[52px]"
       >
-        <p className="cond text-[28px] font-black text-white leading-none" style={{ letterSpacing: 'var(--letter-spacing-tight1)' }}>SANKALP</p>
-        <p className="cond text-[28px] font-black leading-none mb-[10px]" style={{ color: 'var(--color-gold)', letterSpacing: 'var(--letter-spacing-tight1)' }}>NAGLE</p>
-        <p className="text-[10px] font-bold uppercase" style={{ letterSpacing: 'var(--letter-spacing-badge)', color: 'var(--color-stroke-faint)' }}>Full-Stack Developer</p>
+        <p className="cond text-[36px] font-black text-white leading-none" style={{ letterSpacing: 'var(--letter-spacing-tight1)' }}>SANKALP</p>
+        <p className="cond text-[36px] font-black leading-none mb-[10px]" style={{ color: 'var(--color-gold)', letterSpacing: 'var(--letter-spacing-tight1)' }}>NAGLE</p>
+        <p className="text-[12px] font-bold uppercase" style={{ letterSpacing: 'var(--letter-spacing-badge)', color: 'var(--color-stroke-faint)' }}>Full-Stack Developer</p>
         <div className="w-9 h-[2px] mt-[14px] rounded-[1px]" style={{ backgroundColor: 'var(--color-gold)' }} />
       </motion.div>
 
@@ -45,6 +45,7 @@ export function Sidebar({ active, onNav }: SidebarProps) {
             <div
               className={`nl ${active === item.id ? 'on' : ''}`}
               onClick={() => onNav(item.id)}
+              style={{letterSpacing:"1.5px"}}
             >
               <span className="d" />
               {item.label}

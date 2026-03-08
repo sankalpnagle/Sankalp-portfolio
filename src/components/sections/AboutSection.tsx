@@ -29,7 +29,7 @@ export function AboutSection() {
             <Reveal d={0.1}>
               <p
                 className="leading-[1.9] mb-[18px]"
-                style={{ fontSize: "14px", color: "var(--color-ink-soft)" }}
+                style={{ fontSize: "16px", color: "var(--color-ink-soft)" }}
               >
                 I'm a{" "}
                 <strong
@@ -46,7 +46,7 @@ export function AboutSection() {
               </p>
               <p
                 className="leading-[1.9] mb-9"
-                style={{ fontSize: "14px", color: "var(--color-ink-soft)" }}
+                style={{ fontSize: "16px", color: "var(--color-ink-soft)" }}
               >
                 From designing RESTful APIs to orchestrating automated CI/CD
                 pipelines, I build solutions that scale without compromise.
@@ -65,7 +65,7 @@ export function AboutSection() {
                     <p
                       className="font-bold uppercase mb-1"
                       style={{
-                        fontSize: "var(--font-size-3xs)",
+                        fontSize: "var(--font-size-sm)",
                         color: "var(--color-gold)",
                         letterSpacing: "var(--letter-spacing-wide6)",
                       }}
@@ -74,7 +74,7 @@ export function AboutSection() {
                     </p>
                     <p
                       style={{
-                        fontSize: "12px",
+                        fontSize: "16px",
                         color: "var(--color-ink-light)",
                       }}
                     >
@@ -134,7 +134,7 @@ export function AboutSection() {
                       className="uppercase mt-2 whitespace-pre-line"
                       style={{
                         fontSize: "var(--font-size-3xs)",
-                        color: "var(--color-ink-dim)",
+                        color: "var(--color-ink-faint)",
                         letterSpacing: "var(--letter-spacing-wide3)",
                       }}
                     >
