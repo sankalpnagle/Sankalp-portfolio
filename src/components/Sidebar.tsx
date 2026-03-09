@@ -1,4 +1,10 @@
 import { motion } from "framer-motion";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { NAV_ITEMS } from "@/data";
 
 interface SidebarProps {
@@ -86,21 +92,56 @@ export function Sidebar({ active, onNav }: SidebarProps) {
         transition={{ delay: 1 }}
       >
         <div className="flex gap-2 mb-5">
-          {["in", "gh", "tw"].map((s) => (
-            <div key={s} className="soc">
-              {s}
-            </div>
-          ))}
+          <a
+            href="https://www.facebook.com/sankalpn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="soc"
+            title="Facebook"
+            aria-label="Facebook"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://github.com/sankalpnagle"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="soc"
+            title="GitHub"
+            aria-label="GitHub"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://www.instagram.com/sankalp_nagle/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="soc"
+            title="Instagram"
+            aria-label="Instagram"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sankalp-nagle-a54166199/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="soc"
+            title="LinkedIn"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn />
+          </a>
         </div>
-        <p
+        {/* <p
           className="text-[8px] uppercase"
           style={{
             color: "var(--color-ink-faint)",
             letterSpacing: "var(--letter-spacing-wide2)",
           }}
         >
-          © 2025 Sankalp Nagle
-        </p>
+          © Sankalp Nagle
+        </p> */}
       </motion.div>
     </aside>
   );

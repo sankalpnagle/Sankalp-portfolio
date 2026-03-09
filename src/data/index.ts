@@ -128,7 +128,7 @@ export const STAT_BOXES: StatBox[] = [
 
 export const HERO_STATS: Array<[string, string]> = [
   ["2.6+", "Yrs Experience"],
-  ["3+", "Projects Shipped"],
+  ["5+", "Projects Shipped"],
   ["60%", "Deployment Saved"],
 ];
 

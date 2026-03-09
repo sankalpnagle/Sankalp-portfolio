@@ -36,7 +36,7 @@ export default function App() {
         <WorkSection />
         <SkillsSection />
         <ContactSection />
-        <Footer />
+        {/* <Footer /> */}
       </main>
 
       <MobileNav active={active} onNav={scrollTo} />

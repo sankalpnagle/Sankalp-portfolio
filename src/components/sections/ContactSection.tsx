@@ -1,4 +1,10 @@
 import { motion } from "framer-motion";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { Reveal } from "@/components/Reveal";
 import { CONTACT_INFO } from "@/data";
 
@@ -96,18 +102,43 @@ export function ContactSection() {
           <Reveal d={0.4}>
             <div className="flex gap-[9px] mt-8">
               {[
-                ["in", "LinkedIn"],
-                ["gh", "GitHub"],
-                ["tw", "Twitter"],
-              ].map(([s, label]) => (
-                <motion.div
-                  key={s}
+                {
+                  key: "fb",
+                  label: "Facebook",
+                  href: "https://www.facebook.com/sankalpn/",
+                  icon: <FaFacebookF />,
+                },
+                {
+                  key: "gh",
+                  label: "GitHub",
+                  href: "https://github.com/sankalpnagle",
+                  icon: <FaGithub />,
+                },
+                {
+                  key: "ig",
+                  label: "Instagram",
+                  href: "https://www.instagram.com/sankalp_nagle/?hl=en",
+                  icon: <FaInstagram />,
+                },
+                {
+                  key: "in",
+                  label: "LinkedIn",
+                  href: "https://www.linkedin.com/in/sankalp-nagle-a54166199/",
+                  icon: <FaLinkedinIn />,
+                },
+              ].map((item) => (
+                <motion.a
+                  key={item.key}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="soc"
-                  title={label}
+                  title={item.label}
+                  aria-label={item.label}
                   whileHover={{ scale: 1.15 }}
                 >
-                  {s}
-                </motion.div>
+                  {item.icon}
+                </motion.a>
               ))}
             </div>
           </Reveal>

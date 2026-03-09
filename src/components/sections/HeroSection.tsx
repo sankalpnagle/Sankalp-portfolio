@@ -113,6 +113,53 @@ export function HeroSection({ onNav }: HeroSectionProps) {
       <div className="absolute left-[64px] top-0 bottom-0 w-px bg-accent-strong max-[1024px]:hidden" />
       <div className="absolute left-[108px] top-0 bottom-0 w-px bg-accent-soft max-[1024px]:hidden" />
 
+      <motion.div
+        className="absolute right-[clamp(18px,5vw,64px)] top-[clamp(18px,3vh,30px)] z-20 flex items-center gap-4 max-[1024px]:relative max-[1024px]:right-auto max-[1024px]:top-auto max-[1024px]:order-0 max-[1024px]:w-full max-[1024px]:justify-end"
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.2 }}
+      >
+        <a
+          href="/cv/Sankalp_Resume.pdf"
+          download="Sankalp_Resume.pdf"
+          className="cond uppercase transition-colors duration-200"
+          style={{
+            fontSize: "10px",
+            letterSpacing: "var(--letter-spacing-wide6)",
+            color: "var(--color-ink-muted)",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color = "var(--color-gold)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--color-ink-muted)")
+          }
+        >
+          Resume
+        </a>
+        <span style={{ color: "var(--color-stroke-faint)", fontSize: "10px" }}>
+          /
+        </span>
+        <a
+          href="/cv/Sankalp_cover.pdf"
+          download="Sankalp_cover.pdf"
+          className="cond uppercase transition-colors duration-200"
+          style={{
+            fontSize: "10px",
+            letterSpacing: "var(--letter-spacing-wide6)",
+            color: "var(--color-ink-muted)",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color = "var(--color-gold)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--color-ink-muted)")
+          }
+        >
+          Cover Letter
+        </a>
+      </motion.div>
+
       {/* ── Left content — wider ── */}
       <div
         className="relative z-10 flex-1 min-w-0 pr-6 max-[1024px]:order-2 max-[1024px]:pr-0 max-[1024px]:w-full"
@@ -173,7 +220,7 @@ export function HeroSection({ onNav }: HeroSectionProps) {
           className="leading-[1.8] mb-7"
           style={{
             fontSize: "clamp(15px, 3.8vw, 18px)",
-            color: "var(--color-ink-soft)",
+            color: "var(--color-ink-muted)",
             maxWidth: "540px",
           }}
           initial={{ opacity: 0, y: 20 }}

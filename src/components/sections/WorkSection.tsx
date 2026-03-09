@@ -196,7 +196,7 @@ export function WorkSection() {
               </h3>
               <p
                 className="leading-[1.75] mb-5"
-                style={{ fontSize: "15px", color: "var(--color-ink-body)" }}
+                style={{ fontSize: "15px", color: "var(--color-ink-muted)" }}
               >
                 {p.desc}
               </p>
@@ -215,7 +215,7 @@ export function WorkSection() {
                   letterSpacing: "var(--letter-spacing-wide6)",
                 }}
               >
-                Click to view details
+                view details
               </p>
             </motion.div>
           </Reveal>
@@ -318,7 +318,7 @@ export function WorkSection() {
                 <div>
                   <p
                     className="leading-[1.8] mb-5"
-                    style={{ fontSize: "15px", color: "var(--color-ink-soft)" }}
+                    style={{ fontSize: "15px", color: "var(--color-ink-faint)" }}
                   >
                     {activeProject.desc}
                   </p>
