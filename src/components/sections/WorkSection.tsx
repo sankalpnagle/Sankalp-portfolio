@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { EXP, PROJECTS } from "@/data";
+import type { Project } from "@/types";
 
 function SectionDivider({ label }: { label: string }) {
   return (
@@ -22,6 +24,48 @@ function SectionDivider({ label }: { label: string }) {
 }
 
 export function WorkSection() {
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    if (!activeProject) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveProject(null);
+      }
+
+      if (event.key === "ArrowRight") {
+        setActiveImage(
+          (idx) => (idx + 1) % Math.max(activeProject.images.length, 1),
+        );
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveImage((idx) => {
+          const count = Math.max(activeProject.images.length, 1);
+          return (idx - 1 + count) % count;
+        });
+      }
+    };
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeProject]);
+
+  const openProject = (project: Project) => {
+    setActiveProject(project);
+    setActiveImage(0);
+  };
+
   return (
     <section
       id="work"
@@ -119,8 +163,17 @@ export function WorkSection() {
         {PROJECTS.map((p, i) => (
           <Reveal key={i} d={i * 0.13}>
             <motion.div
-              className="card h-full cursor-default"
+              className="card h-full cursor-pointer"
               whileHover={{ borderColor: "#c9973a44", y: -6 }}
+              onClick={() => openProject(p)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openProject(p);
+                }
+              }}
             >
               <div className="flex justify-between items-start mb-[18px]">
                 <span
@@ -154,10 +207,168 @@ export function WorkSection() {
                   </span>
                 ))}
               </div>
+              <p
+                className="uppercase mt-5"
+                style={{
+                  fontSize: "10px",
+                  color: "var(--color-gold)",
+                  letterSpacing: "var(--letter-spacing-wide6)",
+                }}
+              >
+                Click to view details
+              </p>
             </motion.div>
           </Reveal>
         ))}
       </div>
+
+      {activeProject && (
+        <div
+          className="fixed inset-0 z-[500] p-4 max-[560px]:p-2"
+          onClick={() => setActiveProject(null)}
+        >
+          <div className="absolute inset-0 bg-black/75" />
+
+          <motion.div
+            className="relative z-10 h-full flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <motion.div
+              className="card w-full max-w-[960px] max-h-[92vh] overflow-y-auto"
+              style={{
+                backgroundColor: "#111113",
+                borderColor: "var(--color-gold-border)",
+              }}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex justify-between items-start gap-4 mb-5">
+                <div>
+                  <p
+                    className="uppercase mb-2"
+                    style={{
+                      fontSize: "11px",
+                      color: "var(--color-gold)",
+                      letterSpacing: "var(--letter-spacing-wide6)",
+                    }}
+                  >
+                    Project Details
+                  </p>
+                  <h3
+                    className="font-bold text-white"
+                    style={{ fontSize: "clamp(22px, 4vw, 30px)" }}
+                  >
+                    {activeProject.emoji} {activeProject.name}
+                  </h3>
+                </div>
+
+                <button
+                  className="cursor-pointer border-none rounded-[2px] px-3 py-2"
+                  style={{
+                    backgroundColor: "#1c1c20",
+                    color: "var(--color-ink-light)",
+                  }}
+                  onClick={() => setActiveProject(null)}
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="grid grid-cols-[1.2fr_1fr] gap-6 max-[1024px]:grid-cols-1">
+                <div>
+                  <div
+                    className="overflow-hidden rounded-[3px] border"
+                    style={{ borderColor: "var(--color-stroke-dark)" }}
+                  >
+                    <img
+                      src={activeProject.images[activeImage]}
+                      alt={`${activeProject.name} preview ${activeImage + 1}`}
+                      className="w-full h-[320px] max-[560px]:h-[220px] object-cover"
+                    />
+                  </div>
+
+                  {activeProject.images.length > 1 && (
+                    <div className="flex gap-2 mt-3">
+                      {activeProject.images.map((img, idx) => (
+                        <button
+                          key={img}
+                          className="cursor-pointer border-none p-0"
+                          onClick={() => setActiveImage(idx)}
+                          style={{
+                            opacity: activeImage === idx ? 1 : 0.55,
+                            outline:
+                              activeImage === idx
+                                ? "1px solid var(--color-gold)"
+                                : "1px solid var(--color-stroke-dark)",
+                          }}
+                        >
+                          <img
+                            src={img}
+                            alt={`${activeProject.name} thumbnail ${idx + 1}`}
+                            className="w-[92px] h-[62px] object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <p
+                    className="leading-[1.8] mb-5"
+                    style={{ fontSize: "15px", color: "var(--color-ink-soft)" }}
+                  >
+                    {activeProject.desc}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {activeProject.tags.map((tech) => (
+                      <span key={tech} className="tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href={activeProject.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="cond font-bold uppercase rounded-[2px]"
+                      style={{
+                        fontSize: "11px",
+                        letterSpacing: "var(--letter-spacing-wide6)",
+                        color: "var(--color-bg-darker)",
+                        backgroundColor: "var(--color-gold)",
+                        padding: "11px 18px",
+                      }}
+                    >
+                      GitHub Repo
+                    </a>
+                    <a
+                      href={activeProject.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="cond font-bold uppercase rounded-[2px]"
+                      style={{
+                        fontSize: "11px",
+                        letterSpacing: "var(--letter-spacing-wide6)",
+                        color: "var(--color-ink-light)",
+                        border: "1px solid var(--color-stroke-faint)",
+                        padding: "11px 18px",
+                      }}
+                    >
+                      Live URL
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }
