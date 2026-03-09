@@ -45,14 +45,17 @@ export function WorkSection() {
       <div className="tl mb-[72px]">
         {EXP.map((e, i) => (
           <Reveal key={i} d={i * 0.13}>
-            <motion.div className="tl-item" whileHover={{ x: 4 }}>
+            <motion.div
+              className="tl-item pl-6 max-[1024px]:pl-4 max-[560px]:pl-3"
+              whileHover={{ x: 4 }}
+            >
               <div className="tl-dot" />
-              <div className="card ml-6">
+              <div className="card">
                 <div className="flex flex-wrap justify-between gap-2 mb-4">
                   <div>
                     <h3
                       className="font-bold text-white mb-1"
-                      style={{ fontSize: "18px" }}
+                      style={{ fontSize: "clamp(16px, 4.2vw, 18px)" }}
                     >
                       {e.role}
                     </h3>
@@ -86,7 +89,7 @@ export function WorkSection() {
                       key={j}
                       className="flex gap-[10px] leading-[1.75]"
                       style={{
-                        fontSize: "16px",
+                        fontSize: "clamp(14px, 3.8vw, 16px)",
                         color: "var(--color-ink-faint)",
                       }}
                     >

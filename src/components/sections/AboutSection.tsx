@@ -23,7 +23,7 @@ export function AboutSection() {
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-[60px] items-start max-[860px]:grid-cols-1 max-[860px]:gap-10">
+        <div className="grid grid-cols-2 gap-[60px] items-start max-[1024px]:grid-cols-1 max-[1024px]:gap-10">
           {/* Left */}
           <div>
             <Reveal d={0.1}>
@@ -55,7 +55,7 @@ export function AboutSection() {
             </Reveal>
 
             <Reveal d={0.18}>
-              <div className="grid grid-cols-2 gap-x-7 gap-y-[14px]">
+              <div className="grid grid-cols-2 gap-x-7 gap-y-[14px] max-[560px]:grid-cols-1">
                 {INFO_GRID.map(([k, v]) => (
                   <div
                     key={k}
@@ -106,7 +106,7 @@ export function AboutSection() {
           {/* Right — stat cards */}
           <div>
             <Reveal d={0.12}>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 max-[560px]:grid-cols-1">
                 {STAT_BOXES.map(({ n, l, ico }, i) => (
                   <motion.div
                     key={n}

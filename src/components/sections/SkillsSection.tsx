@@ -38,7 +38,7 @@ export function SkillsSection() {
         </h2>
       </Reveal>
 
-      <div className="grid grid-cols-2 gap-16 max-[860px]:grid-cols-1 max-[860px]:gap-10">
+      <div className="grid grid-cols-2 gap-16 max-[1024px]:grid-cols-1 max-[1024px]:gap-10">
         <div>
           <Reveal d={0.08}>
             <SubLabel label="Proficiency Levels" />

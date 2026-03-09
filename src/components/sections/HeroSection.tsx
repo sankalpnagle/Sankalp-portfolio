@@ -88,12 +88,12 @@ export function HeroSection({ onNav }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative flex items-center justify-start gap-12 overflow-hidden max-[1024px]:gap-8 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-10"
+      className="relative flex items-center justify-start gap-12 overflow-hidden max-[1024px]:flex-col max-[1024px]:items-start max-[1024px]:gap-8"
       style={{
-        minHeight: "clamp(460px, 70svh, 660px)",
+        minHeight: "clamp(460px, 70svh, 640px)",
         backgroundColor: "var(--color-bg)",
         padding:
-          "clamp(52px, 7vh, 72px) clamp(24px, 5vw, 64px) clamp(44px, 6vh, 56px)",
+          "clamp(48px, 7vh, 72px) clamp(18px, 5vw, 64px) clamp(36px, 6vh, 56px)",
       }}
     >
       {/* Giant decorative background word */}
@@ -110,12 +110,12 @@ export function HeroSection({ onNav }: HeroSectionProps) {
       </div> */}
 
       {/* Vertical accent lines */}
-      <div className="absolute left-[64px] top-0 bottom-0 w-px bg-accent-strong max-[1024px]:left-10 max-[860px]:hidden" />
-      <div className="absolute left-[108px] top-0 bottom-0 w-px bg-accent-soft max-[1024px]:left-[76px] max-[860px]:hidden" />
+      <div className="absolute left-[64px] top-0 bottom-0 w-px bg-accent-strong max-[1024px]:hidden" />
+      <div className="absolute left-[108px] top-0 bottom-0 w-px bg-accent-soft max-[1024px]:hidden" />
 
       {/* ── Left content — wider ── */}
       <div
-        className="relative z-10 flex-1 min-w-0 pr-6 max-[1024px]:pr-0 max-[860px]:w-full"
+        className="relative z-10 flex-1 min-w-0 pr-6 max-[1024px]:order-2 max-[1024px]:pr-0 max-[1024px]:w-full"
         style={{ maxWidth: "640px" }}
       >
         {/* Available badge */}
@@ -172,7 +172,7 @@ export function HeroSection({ onNav }: HeroSectionProps) {
         <motion.p
           className="leading-[1.8] mb-7"
           style={{
-            fontSize: "18px",
+            fontSize: "clamp(15px, 3.8vw, 18px)",
             color: "var(--color-ink-soft)",
             maxWidth: "540px",
           }}
@@ -231,7 +231,7 @@ export function HeroSection({ onNav }: HeroSectionProps) {
 
         {/* Stats row */}
         <motion.div
-          className="flex gap-9 mt-8 pt-5 max-[1024px]:gap-6 max-[860px]:flex-wrap max-[860px]:mt-8"
+          className="flex gap-9 mt-8 pt-5 max-[1024px]:grid max-[1024px]:grid-cols-2 max-[1024px]:gap-5 max-[1024px]:mt-8 max-[560px]:grid-cols-1"
           style={{ borderTop: "1px solid var(--color-stroke)" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -242,7 +242,7 @@ export function HeroSection({ onNav }: HeroSectionProps) {
               <CountUpValue
                 value={v}
                 className="cond text-white w-fit mx-auto leading-none font-black"
-                style={{ fontSize: "40px" }}
+                style={{ fontSize: "clamp(30px, 8vw, 40px)" }}
                 delay={1100 + i * 120}
               />
               <p
@@ -262,17 +262,17 @@ export function HeroSection({ onNav }: HeroSectionProps) {
 
       {/* ── Right — Hero Photo ── */}
       <motion.div
-        className="relative -top-[14px] left-[28px] z-10 self-center shrink-0 -ml-8 max-[1440px]:-ml-6 max-[1280px]:-ml-5 max-[1024px]:-ml-2 max-[860px]:left-0 max-[860px]:ml-0 max-[860px]:w-full max-[860px]:flex max-[860px]:justify-center"
+        className="relative -top-[14px] left-[28px] z-10 self-center shrink-0 -ml-8 max-[1440px]:-ml-6 max-[1280px]:-ml-5 max-[1024px]:order-1 max-[1024px]:top-0 max-[1024px]:left-0 max-[1024px]:ml-0 max-[1024px]:w-full max-[1024px]:flex max-[1024px]:justify-start max-[560px]:justify-center"
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Outer glow ring */}
         <div
-          className="relative"
+          className="relative max-[560px]:mx-auto"
           style={{
-            width: "clamp(210px, 22vw, 300px)",
-            height: "clamp(400px, 31vw, 440px)",
+            width: "clamp(180px, 42vw, 300px)",
+            height: "clamp(260px, 62vw, 430px)",
           }}
         >
           {/* Decorative corner brackets */}
@@ -323,7 +323,7 @@ export function HeroSection({ onNav }: HeroSectionProps) {
             className="relative w-full h-full object-cover rounded-[3px]"
             style={{
               filter: "grayscale(20%) contrast(1.05)",
-              boxShadow: "0 0 60px #c9973a22, 0 32px 80px rgba(0,0,0,0.6)",
+              boxShadow: "0 0 44px #c9973a1a, 0 24px 64px rgba(0,0,0,0.5)",
             }}
           />
 

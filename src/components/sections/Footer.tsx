@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer
-      className="flex justify-between items-center flex-wrap gap-3"
+      className="flex justify-between items-center flex-wrap gap-3 max-[560px]:justify-center max-[560px]:text-center"
       style={{
         backgroundColor: "var(--color-bg-darker)",
         borderTop: "1px solid var(--color-stroke)",

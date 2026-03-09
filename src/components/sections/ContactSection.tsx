@@ -22,10 +22,7 @@ export function ContactSection() {
         </h2>
       </Reveal>
 
-      <div
-        className="grid gap-[60px] max-[860px]:grid-cols-1 max-[860px]:gap-10"
-        style={{ gridTemplateColumns: "1fr 1.15fr" }}
-      >
+      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-[60px] max-[1024px]:grid-cols-1 max-[1024px]:gap-10">
         <div>
           <Reveal d={0.1}>
             <p
@@ -67,7 +64,7 @@ export function ContactSection() {
                   {h ? (
                     <a
                       href={h}
-                      className="transition-colors duration-200"
+                      className="transition-colors duration-200 break-all"
                       style={{
                         fontSize: "15px",
                         color: "var(--color-ink-light)",
@@ -116,8 +113,8 @@ export function ContactSection() {
           </Reveal>
         </div>
 
-        <Reveal d={0.15} x={30} y={0}>
-          <div className="card" style={{ padding: 40 }}>
+        <Reveal d={0.15} x={0} y={0}>
+          <div className="card" style={{ padding: "clamp(18px, 5vw, 40px)" }}>
             <p
               className="font-bold uppercase mb-7"
               style={{
@@ -129,7 +126,7 @@ export function ContactSection() {
               Send a Message
             </p>
 
-            <div className="grid grid-cols-2 gap-[14px] mb-[14px]">
+            <div className="grid grid-cols-2 gap-[14px] mb-[14px] max-[640px]:grid-cols-1">
               <div>
                 <label
                   className="font-bold uppercase block mb-2"

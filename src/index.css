@@ -23,7 +23,7 @@
   --color-ink-muted: #b3b3b3;
   --color-ink-dim: #444;
   --color-ink-dimmer: #333;
-  --color-ink-faint:  #b3b3b3;
+  --color-ink-faint: #b3b3b3;
   --color-ink-light: #bbb;
   --color-ink-soft: #a6a6a6;
   --color-ink-body: #666;
@@ -31,15 +31,15 @@
   --font-barlow: "Barlow", sans-serif;
   --font-condensed: "Barlow Condensed", sans-serif;
 
-  --font-size-2xs: 0.750rem;
+  --font-size-2xs: 0.75rem;
   --font-size-3xs: 0.5625rem;
   --font-size-4xs: 0.5rem;
-    --font-size-sm: 0.775rem;
+  --font-size-sm: 0.775rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.5rem;
   --font-size-xl: 1.6rem;
 
-  --letter-spacing-nav: 0.22em; 
+  --letter-spacing-nav: 0.22em;
   --letter-spacing-badge: 0.28em;
   --letter-spacing-tag: 0.13em;
   --letter-spacing-wide1: 0.08em;
@@ -367,4 +367,51 @@ a {
 }
 .bg-gold-gradient {
   background: linear-gradient(90deg, #c9973a, #e8b85a);
+}
+
+@media (max-width: 1024px) {
+  .sec-h {
+    margin-bottom: 32px;
+    font-size: clamp(2.1rem, 10vw, 3.3rem);
+    line-height: 0.92;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .tl {
+    padding-left: 20px;
+  }
+
+  .tl::before {
+    left: 5px;
+  }
+
+  .tl-dot {
+    width: 11px;
+    height: 11px;
+    left: 0;
+  }
+
+  .hero-h1 {
+    font-size: clamp(2rem, 12vw, 3.3rem);
+    line-height: 0.9;
+  }
+}
+
+@media (max-width: 560px) {
+  .sec-tag {
+    margin-bottom: 14px;
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+  }
+
+  .sec-tag::before {
+    width: 18px;
+  }
+
+  .card {
+    padding: 16px;
+  }
 }
