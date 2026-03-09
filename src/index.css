@@ -23,7 +23,7 @@
   --color-ink-muted: #b3b3b3;
   --color-ink-dim: #444;
   --color-ink-dimmer: #333;
-  --color-ink-faint: #8c8c8c;
+  --color-ink-faint:  #b3b3b3;
   --color-ink-light: #bbb;
   --color-ink-soft: #a6a6a6;
   --color-ink-body: #666;
@@ -39,7 +39,7 @@
   --font-size-lg: 1.5rem;
   --font-size-xl: 1.6rem;
 
-  --letter-spacing-nav: 0.22em;
+  --letter-spacing-nav: 0.22em; 
   --letter-spacing-badge: 0.28em;
   --letter-spacing-tag: 0.13em;
   --letter-spacing-wide1: 0.08em;
@@ -239,7 +239,7 @@ a {
   font-weight: 700;
   letter-spacing: var(--letter-spacing-tag);
   text-transform: uppercase;
-  color: var(--color-ink-body);
+  color: var(--color-ink-faint);
   border: 1px solid var(--color-stroke-darker);
   padding: 4px 11px;
   transition:

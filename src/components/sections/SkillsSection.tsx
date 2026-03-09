@@ -84,11 +84,11 @@ export function SkillsSection() {
               </p>
               <h4
                 className="font-bold text-white mb-[5px]"
-                style={{ fontSize: "15px" }}
+                style={{ fontSize: "16px" }}
               >
                 B.E. Computer Science &amp; Engineering
               </h4>
-              <p style={{ fontSize: "12px", color: "var(--color-ink-body)" }}>
+              <p style={{ fontSize: "14px", color: "var(--color-ink-body)" }}>
                 IPS Academy — Institute of Engineering &amp; Science
               </p>
             </div>

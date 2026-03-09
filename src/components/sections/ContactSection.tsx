@@ -30,7 +30,7 @@ export function ContactSection() {
           <Reveal d={0.1}>
             <p
               className="leading-[1.85] mb-10"
-              style={{ fontSize: "14px", color: "var(--color-ink-body)" }}
+              style={{ fontSize: "16px", color: "var(--color-ink-faint)" }}
             >
               I'm open to full-time roles and freelance projects. If you have an
               exciting challenge in mind, let's connect and build something
@@ -57,7 +57,7 @@ export function ContactSection() {
                   <p
                     className="font-bold uppercase mb-[3px]"
                     style={{
-                      fontSize: "var(--font-size-3xs)",
+                      fontSize: "var(--font-size-2xs)",
                       letterSpacing: "var(--letter-spacing-wide6)",
                       color: "var(--color-ink-muted)",
                     }}
@@ -69,7 +69,7 @@ export function ContactSection() {
                       href={h}
                       className="transition-colors duration-200"
                       style={{
-                        fontSize: "13px",
+                        fontSize: "15px",
                         color: "var(--color-ink-light)",
                       }}
                       onMouseEnter={(e) =>
@@ -121,7 +121,7 @@ export function ContactSection() {
             <p
               className="font-bold uppercase mb-7"
               style={{
-                fontSize: "var(--font-size-2xs)",
+                fontSize: "var(--font-size-sm)",
                 letterSpacing: "var(--letter-spacing-wide8)",
                 color: "var(--color-gold)",
               }}
@@ -134,9 +134,9 @@ export function ContactSection() {
                 <label
                   className="font-bold uppercase block mb-2"
                   style={{
-                    fontSize: "var(--font-size-3xs)",
+                    fontSize: "var(--font-size-sm)",
                     color: "var(--color-ink-muted)",
-                    letterSpacing: "var(--letter-spacing-wide5)",
+                    letterSpacing: "var(--letter-spacing-wide4)",
                   }}
                 >
                   Name
@@ -147,9 +147,9 @@ export function ContactSection() {
                 <label
                   className="font-bold uppercase block mb-2"
                   style={{
-                    fontSize: "var(--font-size-3xs)",
+                    fontSize: "var(--font-size-sm)",
                     color: "var(--color-ink-muted)",
-                    letterSpacing: "var(--letter-spacing-wide5)",
+                    letterSpacing: "var(--letter-spacing-wide4)",
                   }}
                 >
                   Email
@@ -166,9 +166,9 @@ export function ContactSection() {
               <label
                 className="font-bold uppercase block mb-2"
                 style={{
-                  fontSize: "var(--font-size-3xs)",
+                  fontSize: "var(--font-size-sm)",
                   color: "var(--color-ink-muted)",
-                  letterSpacing: "var(--letter-spacing-wide5)",
+                  letterSpacing: "var(--letter-spacing-wide4)",
                 }}
               >
                 Subject
@@ -184,9 +184,9 @@ export function ContactSection() {
               <label
                 className="font-bold uppercase block mb-2"
                 style={{
-                  fontSize: "var(--font-size-3xs)",
+                  fontSize: "var(--font-size-sm)",
                   color: "var(--color-ink-muted)",
-                  letterSpacing: "var(--letter-spacing-wide5)",
+                  letterSpacing: "var(--letter-spacing-wide4)",
                 }}
               >
                 Message

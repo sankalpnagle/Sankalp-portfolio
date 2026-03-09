@@ -52,16 +52,16 @@ export function WorkSection() {
                   <div>
                     <h3
                       className="font-bold text-white mb-1"
-                      style={{ fontSize: "17px" }}
+                      style={{ fontSize: "18px" }}
                     >
                       {e.role}
                     </h3>
                     <p
                       className="font-semibold"
                       style={{
-                        fontSize: "12px",
+                        fontSize: "14px",
                         color: "var(--color-gold)",
-                        letterSpacing: "var(--letter-spacing-wide3)",
+                        letterSpacing: "var(--letter-spacing-wide2)",
                       }}
                     >
                       {e.co} · {e.loc}
@@ -70,11 +70,11 @@ export function WorkSection() {
                   <span
                     className="cond font-bold uppercase rounded-[2px] self-start"
                     style={{
-                      fontSize: "11px",
+                      fontSize: "12px",
                       padding: "4px 12px",
                       border: "1px solid var(--color-gold-border)",
                       color: "var(--color-gold)",
-                      letterSpacing: "var(--letter-spacing-wide3)",
+                      letterSpacing: "var(--letter-spacing-wide2)",
                     }}
                   >
                     {e.period}
@@ -86,8 +86,8 @@ export function WorkSection() {
                       key={j}
                       className="flex gap-[10px] leading-[1.75]"
                       style={{
-                        fontSize: "13px",
-                        color: "var(--color-ink-body)",
+                        fontSize: "16px",
+                        color: "var(--color-ink-faint)",
                       }}
                     >
                       <span
@@ -122,7 +122,7 @@ export function WorkSection() {
               <div className="flex justify-between items-start mb-[18px]">
                 <span
                   className="cond font-black leading-none select-none"
-                  style={{ fontSize: "52px", color: "var(--color-bg-card)" }}
+                  style={{ fontSize: "52px", color: "var(--color-ink-dimmer)" }}
                 >
                   {p.n}
                 </span>
@@ -134,13 +134,13 @@ export function WorkSection() {
               />
               <h3
                 className="font-bold text-white mb-[10px]"
-                style={{ fontSize: "17px" }}
+                style={{ fontSize: "20px" }}
               >
                 {p.name}
               </h3>
               <p
                 className="leading-[1.75] mb-5"
-                style={{ fontSize: "12.5px", color: "var(--color-ink-body)" }}
+                style={{ fontSize: "15px", color: "var(--color-ink-body)" }}
               >
                 {p.desc}
               </p>
