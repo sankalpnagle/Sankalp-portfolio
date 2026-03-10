@@ -55,8 +55,15 @@ export function ContactSection() {
 
     setIsSubmitting(true);
 
+    const isLocalHost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+    const apiBase =
+      import.meta.env.VITE_API_URL ||
+      (isLocalHost ? "https://www.codewithsankalp.cv" : "");
+
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(`${apiBase}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
