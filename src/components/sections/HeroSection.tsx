@@ -278,7 +278,7 @@ export function HeroSection({ onNav }: HeroSectionProps) {
 
         {/* Stats row */}
         <motion.div
-          className="flex gap-9 mt-8 pt-5 max-[1024px]:grid max-[1024px]:grid-cols-2 max-[1024px]:gap-5 max-[1024px]:mt-8 max-[560px]:grid-cols-1"
+          className="flex gap-9 mt-8 pt-5"
           style={{ borderTop: "1px solid var(--color-stroke)" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

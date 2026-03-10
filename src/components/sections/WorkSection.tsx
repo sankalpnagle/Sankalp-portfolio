@@ -285,7 +285,7 @@ export function WorkSection() {
                     <img
                       src={activeProject.images[activeImage]}
                       alt={`${activeProject.name} preview ${activeImage + 1}`}
-                      className="w-full h-[320px] max-[560px]:h-[220px] object-cover"
+                      className="w-full h-[320px] max-[560px]:h-[220px] object-fill bg-[#0e0e10]"
                     />
                   </div>
 
@@ -307,7 +307,7 @@ export function WorkSection() {
                           <img
                             src={img}
                             alt={`${activeProject.name} thumbnail ${idx + 1}`}
-                            className="w-[92px] h-[62px] object-cover"
+                            className="w-[92px] h-[62px] object-center bg-[#0e0e10]"
                           />
                         </button>
                       ))}
@@ -318,7 +318,10 @@ export function WorkSection() {
                 <div>
                   <p
                     className="leading-[1.8] mb-5"
-                    style={{ fontSize: "15px", color: "var(--color-ink-faint)" }}
+                    style={{
+                      fontSize: "15px",
+                      color: "var(--color-ink-faint)",
+                    }}
                   >
                     {activeProject.desc}
                   </p>
