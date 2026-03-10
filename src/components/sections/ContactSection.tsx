@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import {
   FaFacebookF,
   FaGithub,
@@ -8,7 +10,76 @@ import {
 import { Reveal } from "@/components/Reveal";
 import { CONTACT_INFO } from "@/data";
 
+type ContactFormState = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
 export function ContactSection() {
+  const [form, setForm] = useState<ContactFormState>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const trimmed = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      subject: form.subject.trim(),
+      message: form.message.trim(),
+    };
+
+    if (
+      !trimmed.name ||
+      !trimmed.email ||
+      !trimmed.subject ||
+      !trimmed.message
+    ) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(trimmed),
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        toast.error(data?.error || "Unable to send message right now.");
+        return;
+      }
+
+      toast.success("Message sent successfully");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (_error) {
+      toast.error("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -157,21 +228,51 @@ export function ContactSection() {
               Send a Message
             </p>
 
-            <div className="grid grid-cols-2 gap-[14px] mb-[14px] max-[640px]:grid-cols-1">
-              <div>
-                <label
-                  className="font-bold uppercase block mb-2"
-                  style={{
-                    fontSize: "var(--font-size-sm)",
-                    color: "var(--color-ink-muted)",
-                    letterSpacing: "var(--letter-spacing-wide4)",
-                  }}
-                >
-                  Name
-                </label>
-                <input className="inp" type="text" placeholder="Your name" />
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-2 gap-[14px] mb-[14px] max-[640px]:grid-cols-1">
+                <div>
+                  <label
+                    className="font-bold uppercase block mb-2"
+                    style={{
+                      fontSize: "var(--font-size-sm)",
+                      color: "var(--color-ink-muted)",
+                      letterSpacing: "var(--letter-spacing-wide4)",
+                    }}
+                  >
+                    Name
+                  </label>
+                  <input
+                    className="inp"
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="font-bold uppercase block mb-2"
+                    style={{
+                      fontSize: "var(--font-size-sm)",
+                      color: "var(--color-ink-muted)",
+                      letterSpacing: "var(--letter-spacing-wide4)",
+                    }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    className="inp"
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="hello@email.com"
+                  />
+                </div>
               </div>
-              <div>
+
+              <div className="mb-[14px]">
                 <label
                   className="font-bold uppercase block mb-2"
                   style={{
@@ -180,66 +281,62 @@ export function ContactSection() {
                     letterSpacing: "var(--letter-spacing-wide4)",
                   }}
                 >
-                  Email
+                  Subject
                 </label>
                 <input
                   className="inp"
-                  type="email"
-                  placeholder="hello@email.com"
+                  type="text"
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  placeholder="Project inquiry"
                 />
               </div>
-            </div>
 
-            <div className="mb-[14px]">
-              <label
-                className="font-bold uppercase block mb-2"
+              <div className="mb-6">
+                <label
+                  className="font-bold uppercase block mb-2"
+                  style={{
+                    fontSize: "var(--font-size-sm)",
+                    color: "var(--color-ink-muted)",
+                    letterSpacing: "var(--letter-spacing-wide4)",
+                  }}
+                >
+                  Message
+                </label>
+                <textarea
+                  className="inp"
+                  rows={5}
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                className="cond w-full font-bold uppercase rounded-[2px] border-none"
                 style={{
-                  fontSize: "var(--font-size-sm)",
-                  color: "var(--color-ink-muted)",
-                  letterSpacing: "var(--letter-spacing-wide4)",
+                  fontSize: "var(--font-size-2xs)",
+                  letterSpacing: "var(--letter-spacing-wide8)",
+                  backgroundColor: "var(--color-gold)",
+                  color: "var(--color-bg-darker)",
+                  padding: "15px",
+                  cursor: isSubmitting ? "not-allowed" : "pointer",
+                  opacity: isSubmitting ? 0.8 : 1,
                 }}
+                whileHover={
+                  isSubmitting
+                    ? undefined
+                    : { scale: 1.02, boxShadow: "0 0 28px #c9973a44" }
+                }
+                whileTap={isSubmitting ? undefined : { scale: 0.97 }}
               >
-                Subject
-              </label>
-              <input
-                className="inp"
-                type="text"
-                placeholder="Project inquiry"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label
-                className="font-bold uppercase block mb-2"
-                style={{
-                  fontSize: "var(--font-size-sm)",
-                  color: "var(--color-ink-muted)",
-                  letterSpacing: "var(--letter-spacing-wide4)",
-                }}
-              >
-                Message
-              </label>
-              <textarea
-                className="inp"
-                rows={5}
-                placeholder="Tell me about your project..."
-              />
-            </div>
-
-            <motion.button
-              className="cond w-full font-bold uppercase rounded-[2px] cursor-pointer border-none"
-              style={{
-                fontSize: "var(--font-size-2xs)",
-                letterSpacing: "var(--letter-spacing-wide8)",
-                backgroundColor: "var(--color-gold)",
-                color: "var(--color-bg-darker)",
-                padding: "15px",
-              }}
-              whileHover={{ scale: 1.02, boxShadow: "0 0 28px #c9973a44" }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Send Message →
-            </motion.button>
+                {isSubmitting ? "Sending..." : "Send Message ->"}
+              </motion.button>
+            </form>
           </div>
         </Reveal>
       </div>
